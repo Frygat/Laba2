@@ -4,13 +4,14 @@ spend = 6000  # Траты за первый месяц
 increase = 0.05  # Ежемесячный рост цен
 
 months = 0
-budget = money_capital + salary  ## 25000
+while True:     #цикл пока подушка безопасности есть
+    delta = spend - salary   # введу переменную, которая будет разницей между тратами и зарплатой
 
-while budget >= spend:
+    if delta > money_capital:  # если разница больше подушки, то денег нет
+        break
+
     months += 1
-    budget -= spend
-    spend *= (1 + increase)
-    budget += salary
+    money_capital -= delta     # Уменьшаю подушку безопасности на разницу между тратами и зарплатой
+    spend *= 1 + increase
 # TODO Посчитайте количество  месяцев, которое можно протянуть без долгов
-
 print("Количество месяцев, которое можно протянуть без долгов:", months)
